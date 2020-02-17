@@ -4,25 +4,47 @@ export default class InfoWidget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            buildingInfo: null,
+            buildingInfo: [],
             name: '',
-            facts: [],
+            interesting_facts: [],
             info: [],
-            reviews: []
+            reviews: [],
+            listOfBuildings: [],
+            currentBuilding: '',  
         };
     }
 
-    componentWillMount(){
-        
+
+    componentWillMount() {
+        fetch("http://localhost:5000/api/V1.0/get_building_info/Northwestern%20Mutual%20Tower%20and%20Commons")
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                this.setState({ 
+                    buildingInfo: json.buildingInfo,
+                    info: json.info,
+                    interesting_facts: json.interesting_facts,
+                    name: json.name,
+                    reviews: json.reviews
+                 });
+            })
+            .then(
+                console.log(this.state)
+            );
     }
+
+
 
 
 
     render() {
         return (
-        <div>
-
-        </div>
+            <div>
+                <p>Building Name: {this.state.name}</p>
+                <p hidden={!this.props.showFacts}>Interesting Facts: {this.state.interesting_facts}</p>
+                <p hidden={!this.props.showInfo}>Building Info: {this.state.info}</p>
+                <p hidden={!this.props.showReviews}>Reviews: {this.state.reviews}</p>
+            </div>
         )
     }
 }
