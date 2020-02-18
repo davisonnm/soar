@@ -9,11 +9,34 @@ export default class InfoWidget extends React.Component {
             interesting_facts: [],
             info: [],
             reviews: [],
+            
         };
+    }
+
+    componentDidMount(){
+        var d = new Date();
+        var n = d.getTime();
+        this.endTime = n;
+        console.log("Initial Render Time in ms: " + (this.endTime - this.startTime));
+    }
+    componentDidUpdate(){
+        var d = new Date();
+        var n = d.getTime();
+        this.updateEndTime = n;
+        console.log("Update Time in ms: " + (this.updateEndTime - this.updateStartTime));
+    }
+
+    componentWillUpdate(){
+        var d = new Date();
+        var n = d.getTime();
+        this.updateStartTime = n;
     }
 
 
     componentWillMount() {
+        var d = new Date();
+        var n = d.getTime();
+        this.startTime = n;
         fetch("http://localhost:5000/api/V1.0/get_building_info/" + this.props.currentBuilding)
             .then(response => response.json())
             .then(json => {
@@ -37,6 +60,7 @@ export default class InfoWidget extends React.Component {
 
     render() {
         var review = Math.floor(Math.random() * this.state.reviews.length);
+        var time = this.state.endTime - this.state.startTime;
         return (
             <div>
                 <p>Building Name: {this.state.name}</p>
