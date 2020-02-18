@@ -28,10 +28,11 @@ export default class LiveView extends React.Component {
     }
 
     render() {
+        const num = Math.floor(Math.random() * 3);
         return (
             <div>
                 <FilterWidget updateFilters={this.handleSubmit} showFacts={this.state.showFacts} showInfo={this.state.showInfo} showReviews={this.state.showReviews} />
-                <InfoWidget name="infoWidget" showFacts={this.state.showFacts} showInfo={this.state.showInfo} showReviews={this.state.showReviews}/>
+                <InfoWidget name="infoWidget" currentBuilding={buildingNames[num]} showFacts={this.state.showFacts} showInfo={this.state.showInfo} showReviews={this.state.showReviews}/>
             </div>
             
         )
