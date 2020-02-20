@@ -31,7 +31,7 @@ export default class FilterWidget extends React.Component {
 
     render() {
         return (
-            <div class="max-w-sm rounded overflow-hidden shadow-lg mx-2 px-4 flex justify-center">
+            <div class="w-64 rounded overflow-hidden shadow-lg mx-2 px-4 flex justify-center">
                 <form onSubmit={this.handleSubmit}>
                     <span class="text-gray-700">Filters</span>
                     <div class="mt-2">

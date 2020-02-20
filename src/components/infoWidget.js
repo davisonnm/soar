@@ -13,17 +13,13 @@ export default class InfoWidget extends React.Component {
         };
     }
 
-    componentDidMount(){
-        var d = new Date();
-        var n = d.getTime();
-        this.endTime = n;
-        console.log("Initial Render Time in ms: " + (this.endTime - this.startTime));
-    }
+   
     componentDidUpdate(){
         var d = new Date();
         var n = d.getTime();
         this.updateEndTime = n;
-        console.log("Update Time in ms: " + (this.updateEndTime - this.updateStartTime));
+        console.log("Update Time in ms: " 
+            + (this.updateEndTime - this.updateStartTime));
     }
 
     componentWillUpdate(){
@@ -32,6 +28,13 @@ export default class InfoWidget extends React.Component {
         this.updateStartTime = n;
     }
 
+    componentDidMount(){
+        var d = new Date();
+        var n = d.getTime();
+        this.endTime = n;
+        console.log("Initial Render Time in ms: " 
+                    + (this.endTime - this.startTime));
+    }
 
     componentWillMount() {
         var d = new Date();
@@ -60,9 +63,8 @@ export default class InfoWidget extends React.Component {
 
     render() {
         var review = Math.floor(Math.random() * this.state.reviews.length);
-        var time = this.state.endTime - this.state.startTime;
         return (
-            <div>
+            <div className=" w-64 rounded overflow-hidden shadow-lg mx-2 px-4 justify-center">
                 <p>Building Name: {this.state.name}</p>
                 <p hidden={!this.props.showFacts}>Interesting Facts: {this.state.interesting_facts}</p>
                 <p hidden={!this.props.showInfo}>Building Info: {this.state.info}</p>
